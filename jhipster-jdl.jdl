@@ -1,0 +1,37 @@
+
+application {
+  config {
+    baseName PetitDej,
+    applicationType monolith,
+    packageName com.dooapp.petitdej,
+    authenticationType jwt,
+    prodDatabaseType postgresql,
+    clientFramework angular
+    enableSwaggerCodegen true
+    nativeLanguage fr
+  }
+  entities *
+}
+
+entity PetitDej {
+  date LocalDate required
+  commentaire String
+}
+
+entity Lieu {
+   name String
+   capacity Integer
+}
+
+relationship ManyToOne {
+     PetitDej to Lieu
+}
+
+
+relationship ManyToOne {
+	PetitDej{organisateur(login)} to User{mesPetitsDejs}
+}
+
+relationship ManyToMany {
+    PetitDej{participants(login)} to User{participations}
+}
