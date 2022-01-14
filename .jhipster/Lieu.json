@@ -1,0 +1,31 @@
+{
+  "name": "Lieu",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "capacity",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "petitDej",
+      "otherEntityRelationshipName": "lieu",
+      "relationshipName": "petitDej"
+    }
+  ],
+  "entityTableName": "lieu",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["PetitDej"],
+  "changelogDate": "20220114155657"
+}

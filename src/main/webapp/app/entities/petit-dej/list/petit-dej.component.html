@@ -1,0 +1,96 @@
+<div>
+  <h2 id="page-heading" data-cy="PetitDejHeading">
+    <span jhiTranslate="petitDejApp.petitDej.home.title">Petit Dejs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="petitDejApp.petitDej.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-petit-dej"
+        [routerLink]="['/petit-dej/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="petitDejApp.petitDej.home.createLabel"> Create a new Petit Dej </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="petitDejs?.length === 0">
+    <span jhiTranslate="petitDejApp.petitDej.home.notFound">No petitDejs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="petitDejs && petitDejs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="petitDejApp.petitDej.date">Date</span></th>
+          <th scope="col"><span jhiTranslate="petitDejApp.petitDej.commentaire">Commentaire</span></th>
+          <th scope="col"><span jhiTranslate="petitDejApp.petitDej.lieu">Lieu</span></th>
+          <th scope="col"><span jhiTranslate="petitDejApp.petitDej.organisateur">Organisateur</span></th>
+          <th scope="col"><span jhiTranslate="petitDejApp.petitDej.participants">Participants</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let petitDej of petitDejs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/petit-dej', petitDej.id, 'view']">{{ petitDej.id }}</a>
+          </td>
+          <td>{{ petitDej.date | formatMediumDate }}</td>
+          <td>{{ petitDej.commentaire }}</td>
+          <td>
+            <div *ngIf="petitDej.lieu">
+              <a [routerLink]="['/lieu', petitDej.lieu?.id, 'view']">{{ petitDej.lieu?.id }}</a>
+            </div>
+          </td>
+          <td>
+            {{ petitDej.organisateur?.login }}
+          </td>
+          <td>
+            <span *ngFor="let participants of petitDej.participants; let last = last">
+              {{ participants.login }}{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/petit-dej', petitDej.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/petit-dej', petitDej.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(petitDej)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

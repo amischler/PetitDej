@@ -1,0 +1,70 @@
+<div>
+  <h2 id="page-heading" data-cy="LieuHeading">
+    <span jhiTranslate="petitDejApp.lieu.home.title">Lieus</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="petitDejApp.lieu.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-lieu"
+        [routerLink]="['/lieu/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="petitDejApp.lieu.home.createLabel"> Create a new Lieu </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="lieus?.length === 0">
+    <span jhiTranslate="petitDejApp.lieu.home.notFound">No lieus found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="lieus && lieus.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="petitDejApp.lieu.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="petitDejApp.lieu.capacity">Capacity</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lieu of lieus; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/lieu', lieu.id, 'view']">{{ lieu.id }}</a>
+          </td>
+          <td>{{ lieu.name }}</td>
+          <td>{{ lieu.capacity }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/lieu', lieu.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/lieu', lieu.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(lieu)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

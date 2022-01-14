@@ -1,0 +1,28 @@
+{
+  "petitDejApp": {
+    "petitDej": {
+      "home": {
+        "title": "PetitDejs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Petit Dej",
+        "createOrEditLabel": "Créer ou éditer un Petit Dej",
+        "notFound": "Aucun Petit Dej trouvé"
+      },
+      "created": "Un nouveau Petit Dej a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Petit Dej avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Petit Dej avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Petit Dej {{ id }} ?"
+      },
+      "detail": {
+        "title": "Petit Dej"
+      },
+      "id": "ID",
+      "date": "Date",
+      "commentaire": "Commentaire",
+      "lieu": "Lieu",
+      "organisateur": "Organisateur",
+      "participants": "Participants"
+    }
+  }
+}

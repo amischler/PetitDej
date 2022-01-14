@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity PetitDej.
+    -->
+    <changeSet id="20220114155557-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="lieu_id"
+                                 baseTableName="petit_dej"
+                                 constraintName="fk_petit_dej__lieu_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lieu"/>
+
+        <addForeignKeyConstraint baseColumnNames="organisateur_id"
+                                 baseTableName="petit_dej"
+                                 constraintName="fk_petit_dej__organisateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="petit_dej_id"
+                                 baseTableName="rel_petit_dej__participants"
+                                 constraintName="fk_rel_petit_dej__participants__petit_dej_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="petit_dej"/>
+
+        <addForeignKeyConstraint baseColumnNames="participants_id"
+                                 baseTableName="rel_petit_dej__participants"
+                                 constraintName="fk_rel_petit_dej__participants__participants_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

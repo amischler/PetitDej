@@ -1,0 +1,26 @@
+{
+  "petitDejApp": {
+    "lieu": {
+      "home": {
+        "title": "Lieus",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Lieu",
+        "createOrEditLabel": "Créer ou éditer un Lieu",
+        "notFound": "Aucun Lieu trouvé"
+      },
+      "created": "Un nouveau Lieu a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Lieu avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Lieu avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Lieu {{ id }} ?"
+      },
+      "detail": {
+        "title": "Lieu"
+      },
+      "id": "ID",
+      "name": "Name",
+      "capacity": "Capacity",
+      "petitDej": "Petit Dej"
+    }
+  }
+}

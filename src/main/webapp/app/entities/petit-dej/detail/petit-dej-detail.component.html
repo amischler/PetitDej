@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="petitDej">
+      <h2 data-cy="petitDejDetailsHeading"><span jhiTranslate="petitDejApp.petitDej.detail.title">Petit Dej</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ petitDej.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="petitDejApp.petitDej.date">Date</span></dt>
+        <dd>
+          <span>{{ petitDej.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="petitDejApp.petitDej.commentaire">Commentaire</span></dt>
+        <dd>
+          <span>{{ petitDej.commentaire }}</span>
+        </dd>
+        <dt><span jhiTranslate="petitDejApp.petitDej.lieu">Lieu</span></dt>
+        <dd>
+          <div *ngIf="petitDej.lieu">
+            <a [routerLink]="['/lieu', petitDej.lieu?.id, 'view']">{{ petitDej.lieu?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="petitDejApp.petitDej.organisateur">Organisateur</span></dt>
+        <dd>
+          <span>{{ petitDej.organisateur?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="petitDejApp.petitDej.participants">Participants</span></dt>
+        <dd>
+          <span *ngFor="let participants of petitDej.participants; let last = last"> {{ participants.login }}{{ last ? '' : ', ' }} </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/petit-dej', petitDej.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
