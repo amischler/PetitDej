@@ -25,6 +25,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
+ import { PetitDejExtendedService } from './entities/petit-dej-extended/petit-dej-extended.service';
+ import { PetitDejService } from './entities/petit-dej/service/petit-dej.service';
 
 @NgModule({
   imports: [
@@ -43,6 +45,7 @@ import { ErrorComponent } from './layouts/error/error.component';
     Title,
     { provide: LOCALE_ID, useValue: 'fr' },
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
+    { provide: PetitDejService, useClass: PetitDejExtendedService },
     httpInterceptorProviders,
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],

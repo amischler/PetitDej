@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
       {
         path: 'petit-dej',
         data: { pageTitle: 'petitDejApp.petitDej.home.title' },
-        loadChildren: () => import('./petit-dej/petit-dej.module').then(m => m.PetitDejModule),
+        loadChildren: () => import('./petit-dej-extended/petit-dej-extended.module').then(m => m.PetitDejExtendedModule),
       },
       {
         path: 'lieu',
